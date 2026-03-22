@@ -69,6 +69,7 @@
     const { data: { user } } = await supabaseApp.auth.getUser();
     
     if (!user) {
+        await supabaseApp.auth.signOut();
         window.location.href = "index.html"; 
         return;
     }
@@ -194,29 +195,56 @@
 
             <div class="bg-white p-4 rounded-xl border border-brand-yellow/30 !mt-2">
                 <h2 class="font-bold text-sm text-brand-blue mb-3">GUARDIA DIGITAL (Tareas hoy! da click encima)</h2>
-                <div class="flex flex-wrap gap-2 mb-0">
-                    <a href="https://vt.tiktok.com/ZSuGee5kb/" target="_blank" rel="noopener noreferrer" class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                        <i class="fa-brands fa-facebook mr-1"></i></i>Comenta, da like
-                    </a>
-                    <a href="https://www.instagram.com/sergiofajardov" target="_blank" rel="noopener noreferrer" 
-                    class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                        <i class="fa-brands fa-instagram mr-1"></i>Sigue
-                    </a>
-                    <a href="https://twitter.com/sergio_fajardo" target="_blank" rel="noopener noreferrer" 
-                    class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                        <i class="fa-brands fa-twitter mr-1"></i>Contesta encuesta
-                    </a>
+                <div id="tareas-digitales" class="flex flex-wrap gap-2 mb-0">
+                    <p class="text-xs text-gray-400 italic">Cargando tareas...</p>
                 </div>
             </div>
+            <script>
+                async function cargarTareasDigitales() {
+    // Apuntamos al archivo en la misma carpeta
+    const archivoLocal = 'tareas.json'; 
+    const contenedor = document.getElementById('tareas-digitales');
+
+    try {
+        // Al ser local, la respuesta es casi instantánea
+        const response = await fetch(archivoLocal);
+        
+        if (!response.ok) throw new Error("No se encontró el archivo JSON");
+        
+        const tareas = await response.json();
+
+        contenedor.innerHTML = ""; // Limpiar el "Cargando..."
+
+        tareas.forEach(tarea => {
+            const link = document.createElement('a');
+            link.href = tarea.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.className = "bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center";
+            
+            link.innerHTML = `<i class="${tarea.icon} mr-1"></i>${tarea.text}`;
+            
+            contenedor.appendChild(link);
+        });
+
+    } catch (error) {
+        console.error("Error al leer tareas.json:", error);
+        contenedor.innerHTML = "<p class='text-xs text-red-500'>Tareas no disponibles hoy.</p>";
+    }
+}
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', cargarTareasDigitales);
+            </script>
 
             <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-inner !mt-1">
                 <h2 class="font-bold text-sm text-brand-blue mb-3">HERRAMIENTAS GUARDIAN (Click encima para usarla)</h2>
                 <div class="flex flex-wrap gap-2 mb-2">
                     <a href="https://adelante-con-fajardo.github.io/propuestas" target="_blank" rel="noopener noreferrer" class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                        <i class="fa-solid fa-wrench mr-1"></i>Chatea con las propuestas
+                        <i class="fa-solid fa-comments mr-1"></i>Chatea con las propuestas
                     </a>
                     <a href="https://adelante-con-fajardo.github.io/perfil" target="_blank" rel="noopener noreferrer" class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                        <i class="fa-solid fa-wrench mr-1"></i>Marco de perfil
+                        <i class="fa-solid fa-image mr-1"></i>Marco perfil
                     </a>
                 </div>
                 <h2 class="font-bold text-sm text-brand-blue mb-3">SIGUE AL CANDIDATO (Click encima para seguir)</h2>
