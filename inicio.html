@@ -791,13 +791,19 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
         
         feed.innerHTML = '<div class="text-center py-8 text-gray-400"><i class="fa-solid fa-circle-notch fa-spin mr-2"></i>Cargando acciones...</div>';
 
+
+        // 1. Hacemos UNA SOLA consulta usando JOIN relacional de Supabase
         const { data, error } = await supabaseApp
             .from('acciones')
             .select(`
-                *,
-                voluntarios (
+                id,
+                tipo,
+                puntos,
+                evidencia_url,
+                likes,
+                voluntarios:codigo_voluntario (
                     nombre,
-                    ciudad,
+                    departamento,
                     total_puntos
                 )
             `)
@@ -805,21 +811,29 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
             .limit(10);
 
         if (error) {
+            console.error("Error cargando feed:", error);
             feed.innerHTML = '<div class="text-red-500 text-xs text-center py-4">Error al cargar el feed</div>';
             return;
         }
 
         feed.innerHTML = '';
-        if (data.length === 0) {
+        if (!data || data.length === 0) {
             feed.innerHTML = '<div class="text-center py-8 text-gray-400 italic">No hay acciones registradas aún</div>';
             return;
         }
 
+        // 2. Iteramos sobre los datos, sin necesidad de hacer más consultas
         data.forEach(item => {
-            const vol = item.voluntarios || { nombre: 'Voluntario', ciudad: 'Colombia', total_puntos: 0 };
+            // Supabase mete los datos del voluntario dentro de item.voluntarios automáticamente
+            const perfil = item.voluntarios || {};
             
-            // Determinamos el avatar basado en el TOTAL de puntos del voluntario, no en los de la acción
-            const rango = obtenerRangoVoluntario(vol.total_puntos);
+            // Extraemos las variables (ahora están en el alcance correcto)
+            const nombreVoluntario = perfil.nombre || 'Voluntario';
+            const ciudadVoluntario = perfil.departamento || 'Colombia';
+            const totalPuntos = perfil.total_puntos || 0; 
+
+            // Determinamos el avatar basado en el TOTAL de puntos del voluntario
+            const rango = obtenerRangoVoluntario(totalPuntos);
             
             let evidenciaHtml = '';
             if (item.evidencia_url) {
@@ -829,9 +843,12 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
                     evidenciaHtml = `<video controls class="w-full h-full object-cover rounded-md"><source src="${item.evidencia_url}"></video>`;
                 }
             } else {
-                evidenciaHtml = '<p class="text-gray-400">Nuevo Voluntario ☺️</p>';
+                evidenciaHtml = `<p class="text-gray-400">${perfil.nombre} agregó un Voluntario ☺️</p>`;
             }
 
+            // 3. Inyectamos las variables en el HTML
+            const likesActuales = item.likes || 0;
+            const colorCorazon = likesActuales > 0 ? 'text-red-500' : 'text-gray-400';
             const html = `
                 <div class="relative animate-fade-in mb-8">
                     <div class="absolute -left-12 top-0">
@@ -840,15 +857,20 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
                     
                     <div class="ml-2">
                         <p class="text-sm text-gray-800">
-                            <strong class="text-brand-blue">${vol.nombre}</strong> 
-                            <span class="text-gray-400">en</span> ${vol.ciudad} 
+                            <strong class="text-brand-blue">${nombreVoluntario}</strong> 
+                            <span class="text-gray-400">en</span> ${ciudadVoluntario} 
                             <span class="text-gray-400">—</span> ${item.tipo}
                         </p>
                         <p class="text-[10px] text-brand-red font-bold uppercase tracking-wider mb-2">
-                            +${item.puntos} Puntos Esperanza
+                            +${item.puntos} Puntos Serios
                         </p>
                         <div class="bg-gray-100 h-48 rounded-xl w-full overflow-hidden flex items-center justify-center border border-gray-50 shadow-inner">
                             ${evidenciaHtml}
+                            <button onclick="darLike(${item.id}, ${likesActuales}, this)" 
+                                    class="absolute bottom-3 right-3 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg hover:scale-110 transition-all active:scale-95 group/btn">
+                                <i class="fa-solid fa-heart ${colorCorazon} transition-colors duration-300 icono-corazon"></i>
+                                <span class="text-xs font-bold text-gray-700 contador-likes">${likesActuales}</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -857,6 +879,51 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
         });
     }
 
+    async function darLike(accionId, likesActuales, boton) {
+        // 1. Evitar clics dobles mientras procesa
+        if (boton.disabled) return;
+        boton.disabled = true;
+        
+        const contador = boton.querySelector('.contador-likes');
+        const icono = boton.querySelector('.icono-corazon'); // Seleccionamos el icono
+        const nuevosLikes = parseInt(contador.innerText) + 1;
+
+        // 2. Efecto visual inmediato (Optimistic UI)
+        contador.innerText = nuevosLikes;
+        
+        // CAMBIO DE COLOR AL INSTANTE
+        icono.classList.remove('text-gray-400');
+        icono.classList.add('text-red-500', 'scale-125'); // Ponemos rojo y agrandamos un poco
+        
+        boton.classList.add('animate-ping'); // Tu efecto de destello
+        setTimeout(() => {
+            boton.classList.remove('animate-ping');
+            icono.classList.remove('scale-125'); // Quitamos el efecto de agrandado
+        }, 300);
+
+        try {
+            // 3. Actualizar en Supabase
+            const { error } = await supabaseApp
+                .from('acciones')
+                .update({ likes: nuevosLikes })
+                .eq('id', accionId);
+
+            if (error) throw error;
+
+        } catch (error) {
+            console.error("Error al dar like:", error);
+            
+            // Si falla, revertimos el número Y el color
+            contador.innerText = likesActuales;
+            if (likesActuales === 0) {
+                icono.classList.replace('text-red-500', 'text-gray-400');
+            }
+            alert("No se pudo registrar el like. Inténtalo de nuevo.");
+        } finally {
+            boton.disabled = false;
+        }
+    }
+        
     // ==================== ABRIR MODAL REGISTRO ====================
     async function registrarAccion() {
         const { data: { user } } = await supabaseApp.auth.getUser();
@@ -880,6 +947,7 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
 
     // ==================== CONFIRMAR REGISTRO + GUARDAR EN STORAGE ====================
     async function confirmarRegistro() {
+
         if (!currentUser) return alert('Debes iniciar sesión');
 
         const valor = document.getElementById('selectAccion').value;
@@ -906,6 +974,7 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
 
                 const { data } = supabaseApp.storage.from('evidences').getPublicUrl(fileName);
                 evidenceUrl = data.publicUrl;
+                alert('¡Todo listo! 🚀 Aguarda un instante mientras despega la carga.');
             } catch (e) {
                 alert('Error al subir archivo: ' + e.message);
                 return;
@@ -1102,6 +1171,24 @@ document.getElementById('modalPreview').addEventListener('click', function(e) {
     // Lógica para el sistema de navegación
     function showPage(pageId) {
         // 1. Ocultar todas las secciones
+        switch (pageId) {
+                case "inicio":
+                    cargarTareasDigitales();
+                    break;
+                    
+                case "acciones":
+                    cargarFeed();
+                    break;
+                    
+                case "calendario":
+                    cargarEventos();
+                    break;
+                
+                case "perfil":
+                    obtenerDatosUsuario();
+                    break;
+            }
+
         const pages = document.querySelectorAll('.page-content');
         pages.forEach(page => {
             page.classList.add('hidden-page');
