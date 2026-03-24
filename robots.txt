@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Indica la ubicación del mapa del sitio
 Sitemap: https://adelante-con-fajardo.github.io/guardianes/sitemap.xml
