@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso - Guardianes Santander</title>
+    
+    <title>Voluntarios Guardianes Colombia | Sergio Fajardo Presidente</title>
+    <meta name="description" content="Únete a Guardianes Colombia. Regístrate como voluntario para la campaña de Sergio Fajardo, candidato a la presidencia de Colombia.">
+    <meta name="keywords" content="fajardo, sergio fajardo, candidatos presidencia colombia, elecciones colombia, guardianes colombia, voluntariado">
+    <meta name="robots" content="index, follow"> <link rel="canonical" href="https://adelante-con-fajardo.github.io/guardianes/"> <meta name="author" content="Guardianes Colombia">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adelante-con-fajardo.github.io/guardianes/">
+    <meta property="og:title" content="Voluntarios Guardianes | Sergio Fajardo Presidente">
+    <meta property="og:description" content="Súmate como voluntario a la campaña de Sergio Fajardo. Inscríbete aquí y sé parte de los Guardianes de Colombia.">
+    <meta property="og:image" content="https://adelante-con-fajardo.github.io/guardianes/logo.webp">
+    <meta property="og:site_name" content="Guardianes Colombia">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://adelante-con-fajardo.github.io/guardianes/">
+    <meta name="twitter:title" content="Voluntarios Guardianes | Sergio Fajardo Presidente">
+    <meta name="twitter:description" content="Súmate como voluntario a la campaña de Sergio Fajardo. Inscríbete aquí.">
+    <meta name="twitter:image" content="https://adelante-con-fajardo.github.io/guardianes/logo.webp">
+
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#F1A42A">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -31,30 +48,11 @@
         }
     </script>
     <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-
-        .form-section {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hidden-form {
-            display: none;
-            opacity: 0;
-        }
-
-        .custom-checkbox:checked+div {
-            background-color: #0A3572;
-            border-color: #0A3572;
-            color: white;
-        }
-
-        .custom-radio:checked+div {
-            background-color: #B82318;
-            border-color: #B82318;
-            color: white;
-        }
+        ::-webkit-scrollbar { display: none; }
+        .form-section { transition: all 0.3s ease-in-out; }
+        .hidden-form { display: none; opacity: 0; }
+        .custom-checkbox:checked+div { background-color: #0A3572; border-color: #0A3572; color: white; }
+        .custom-radio:checked+div { background-color: #B82318; border-color: #B82318; color: white; }
     </style>
 </head>
 
@@ -64,23 +62,26 @@
 
         <header class="bg-brand-yellow p-6 flex flex-col items-center justify-center relative shrink-0">
             <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md mb-3">
-                <img src="logo.webp" alt="Logo" class="h-10 w-auto" onerror="this.style.display='none'">
+                <img src="logo.webp" alt="Logo de Guardianes Colombia - Campaña Sergio Fajardo" class="h-10 w-auto" onerror="this.style.display='none'">
             </div>
             <h1 class="font-black text-brand-blue leading-tight text-2xl tracking-tight uppercase text-center">
-                GUARDIANES COLOMBIA</h1>
-            <p class="text-sm text-brand-red font-bold uppercase tracking-wider mt-1">Fajardo Presidente</p>
+                GUARDIANES COLOMBIA
+            </h1>
+            <h2 class="text-sm text-brand-red font-bold uppercase tracking-wider mt-1">
+                Sergio Fajardo Presidente
+            </h2>
         </header>
 
-        <div class="flex border-b border-gray-200 shrink-0">
+        <nav class="flex border-b border-gray-200 shrink-0" aria-label="Navegación de acceso">
             <button id="tab-login" onclick="switchTab('login')"
-                class="flex-1 py-4 text-sm font-bold text-gray-400 text-brand-blue border-transparent hover:text-brand-blue transition-colors">
+                class="flex-1 py-4 text-sm font-bold text-brand-blue border-b-2 border-brand-blue transition-colors">
                 Iniciar Sesión
             </button>
             <button id="tab-register" onclick="switchTab('register')"
-                class="flex-1 py-4 text-sm font-semibold  text-brand-blue border-b-2 border-brand-blue border-b-2 transition-colors">
+                class="flex-1 py-4 text-sm font-semibold text-gray-400 border-b-2 border-transparent transition-colors">
                 Registrarse
             </button>
-        </div>
+        </nav>
 
         <div class="flex-1 overflow-y-auto p-6 bg-brand-light/30">
 
@@ -359,7 +360,6 @@
         }
         //checkUser()
         document.addEventListener('DOMContentLoaded', checkUser);
-
 
         // --- 3. UI TABS & CIUDADES ---
         function switchTab(tab) {
