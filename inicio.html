@@ -11,12 +11,66 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="logo.webp">
-
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer>
+        const supabaseUrl = 'https://eixfmvsbjjxfytjynnkf.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpeGZtdnNiamp4Znl0anlubmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxNDEzMjksImV4cCI6MjA4OTcxNzMyOX0.ir4g_PI4KKyy14vDfGA4GHDdIIw3Ty2FqS0uC_Z-qQY';
+        const supabaseApp = supabase.createClient(supabaseUrl, supabaseKey);
+        window.supabaseApp = supabaseApp;
+        async function obtenerDatosUsuario() {
+            const { data: { user } } = await supabaseApp.auth.getUser();
+
+            if (!user) {
+                const { data: { session } } = await supabaseApp.auth.getSession();
+                if (session) {
+                    // Hay sesión pero no pudimos obtener el usuario (posiblemente offline)
+                    const storedPerfil = localStorage.getItem('perfil_voluntario');
+                    if (storedPerfil) {
+                        actualizarUIconPerfil(JSON.parse(storedPerfil));
+                        return;
+                    }
+                }
+                // Si no hay nada, redirigir al login
+                await supabaseApp.auth.signOut();
+                window.location.href = "index.html";
+                return;
+            }
+
+            // 3. Si hay usuario, consultar la tabla voluntarios
+            const { data: perfil, error } = await supabaseApp
+                .from('voluntarios')
+                .select('*')
+                .eq('id', user.id)
+                .single();
+
+            if (perfil) {
+                // Guardar en localStorage para uso offline
+                localStorage.setItem('perfil_voluntario', JSON.stringify(perfil));
+                actualizarUIconPerfil(perfil);
+
+                // Actualizar la racha en la UI
+                actualizarRachaUI(perfil);
+
+            } else if (error && !navigator.onLine) {
+                // Fallback offline: usar datos guardados
+                const storedPerfil = localStorage.getItem('perfil_voluntario');
+                if (storedPerfil) {
+                    const perfilOffline = JSON.parse(storedPerfil);
+                    actualizarUIconPerfil(perfilOffline);
+                    actualizarRachaUI(perfilOffline);
+                }
+            }
+            if (perfil.is_admin) {
+                const btnAdmin = document.getElementById('btn-admin');
+                if (btnAdmin) btnAdmin.classList.remove('hidden');
+            }
+        }
+        obtenerDatosUsuario()
+    </script>
     <script>
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -31,11 +85,6 @@
                 }
             }
         }
-
-        const supabaseUrl = 'https://eixfmvsbjjxfytjynnkf.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpeGZtdnNiamp4Znl0anlubmtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxNDEzMjksImV4cCI6MjA4OTcxNzMyOX0.ir4g_PI4KKyy14vDfGA4GHDdIIw3Ty2FqS0uC_Z-qQY';
-        const supabaseApp = supabase.createClient(supabaseUrl, supabaseKey);
-        window.supabaseApp = supabaseApp;
     </script>
     <style>
         #racha-icono {
@@ -158,55 +207,7 @@
         }
 
 
-        async function obtenerDatosUsuario() {
-            const { data: { user } } = await supabaseApp.auth.getUser();
-
-            if (!user) {
-                const { data: { session } } = await supabaseApp.auth.getSession();
-                if (session) {
-                    // Hay sesión pero no pudimos obtener el usuario (posiblemente offline)
-                    const storedPerfil = localStorage.getItem('perfil_voluntario');
-                    if (storedPerfil) {
-                        actualizarUIconPerfil(JSON.parse(storedPerfil));
-                        return;
-                    }
-                }
-                // Si no hay nada, redirigir al login
-                await supabaseApp.auth.signOut();
-                window.location.href = "index.html";
-                return;
-            }
-
-            // 3. Si hay usuario, consultar la tabla voluntarios
-            const { data: perfil, error } = await supabaseApp
-                .from('voluntarios')
-                .select('*')
-                .eq('id', user.id)
-                .single();
-
-            if (perfil) {
-                // Guardar en localStorage para uso offline
-                localStorage.setItem('perfil_voluntario', JSON.stringify(perfil));
-                actualizarUIconPerfil(perfil);
-
-                // Actualizar la racha en la UI
-                actualizarRachaUI(perfil);
-
-            } else if (error && !navigator.onLine) {
-                // Fallback offline: usar datos guardados
-                const storedPerfil = localStorage.getItem('perfil_voluntario');
-                if (storedPerfil) {
-                    const perfilOffline = JSON.parse(storedPerfil);
-                    actualizarUIconPerfil(perfilOffline);
-                    actualizarRachaUI(perfilOffline);
-                }
-            }
-            if (perfil.is_admin) {
-                const btnAdmin = document.getElementById('btn-admin');
-                if (btnAdmin) btnAdmin.classList.remove('hidden');
-            }
-        }
-        obtenerDatosUsuario()
+        
         function actualizarRachaUI(perfil) {
             const rachaElement = document.getElementById('racha-valor');
             if (rachaElement) {
@@ -1968,7 +1969,7 @@
                             });
                         </script>
                     </div>
-                    <a href="https://wa.me/573000000000?text=Hola%2C%20necesito%20ayuda%20con%20la%20plataforma%20de%20Guardianes"
+                    <a href="https://wa.me/573022304196?text=Hola%2C%20necesito%20ayuda%20con%20la%20plataforma%20de%20Guardianes"
                         target="_blank"
                         class="w-full mt-2 max-w-xs bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-3 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 active:scale-85">
                         <i class="fa-brands fa-whatsapp text-xl"></i>
@@ -2032,8 +2033,8 @@
                                     </div>
                                     <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
                                 </a>
-                                <button onclick="copyLink('${group.url}')" 
-                                        class="bg-gray-100 hover:bg-brand-blue hover:text-white text-gray-500 text-[10px] font-black uppercase px-4 h-[60px] rounded-2xl transition-all border border-gray-200 flex flex-col items-center justify-center gap-1 min-w-[90px]">
+                                <button onclick="copyLink('${group.name.replace(/'/g, "\\'")}', '${group.url}')" 
+                                    class="bg-gray-100 hover:bg-brand-blue hover:text-white text-gray-500 text-[10px] font-black uppercase px-4 h-[60px] rounded-2xl transition-all border border-gray-200 flex flex-col items-center justify-center gap-1 min-w-[90px]">
                                     <i class="fa-solid fa-copy text-sm"></i>
                                     <span>Copiar Link</span>
                                 </button>
@@ -2042,15 +2043,25 @@
                     </script>
                 </div>
                 <script>
-                    function copyLink(url) {
-                        navigator.clipboard.writeText(url).then(() => {
+                    function copyLink(name, url) {
+                        // Aquí personalizas el mensaje que se copiará
+                        const message = `¡Hola! 👋 Te invito a unirte al grupo de WhatsApp: *${name}*.\n\nÚnete aquí: ${url}`;
+
+                        navigator.clipboard.writeText(message).then(() => {
                             const toast = document.getElementById('copy-toast');
+                            
+                            // Opcional: Actualizar el texto del toast para que sea más descriptivo
+                            toast.querySelector('span').innerText = "Mensaje de invitación copiado";
+
                             toast.classList.remove('hidden');
                             toast.classList.add('flex');
+                            
+                            // Animaciones existentes
                             setTimeout(() => {
                                 toast.style.transform = "translate(-50%, 20px)";
                                 toast.style.opacity = "1";
                             }, 10);
+
                             setTimeout(() => {
                                 toast.style.transform = "translate(-50%, 0px)";
                                 toast.style.opacity = "0";
@@ -2060,7 +2071,7 @@
                                 }, 300);
                             }, 2500);
                         }).catch(err => {
-                            alert('Hubo un error al copiar el enlace');
+                            alert('Hubo un error al copiar el mensaje');
                             console.error('Error:', err);
                         });
                     }

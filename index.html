@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso - Guardianes Santander</title>
+    <title>Guardianes</title>
+    <link rel="icon" href="logo.webp" type="image/x-icon">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#F1A42A">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,7 +63,7 @@
 
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden relative flex flex-col max-h-[90vh]">
 
-        <header class="bg-brand-yellow p-6 flex flex-col items-center justify-center relative shrink-0">
+        <header class="bg-brand-yellow p-2 flex flex-col items-center justify-center relative shrink-0">
             <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md mb-3">
                 <img src="logo.webp" alt="Logo" class="h-10 w-auto" onerror="this.style.display='none'">
             </div>
@@ -123,9 +124,9 @@
                             class="fa-regular fa-id-card mr-2"></i>Datos Personales</h3>
 
                     <div>
-                        <label class="block text-xs font-bold text-brand-blue uppercase mb-1">Nombre Completo <span
+                        <label class="block text-xs font-bold text-brand-blue uppercase mb-1">Primer Nombre<span
                                 class="text-brand-red">*</span></label>
-                        <input type="text" id="reg-nombre" required placeholder="Juan Pérez"
+                        <input type="text" id="reg-nombre" required placeholder="Juan"
                             class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-brand-blue outline-none">
                     </div>
 
@@ -139,7 +140,7 @@
                         <div>
                             <label class="block text-xs font-bold text-brand-blue uppercase mb-1">Edad <span
                                     class="text-brand-red">*</span></label>
-                            <input type="number" id="reg-edad" required min="10" max="99" placeholder="Años"
+                            <input type="number" id="reg-edad" required min="0" max="99" placeholder="Años"
                                 class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-brand-blue outline-none">
                         </div>
                     </div>
@@ -172,7 +173,7 @@
                     <div>
                         <label class="block text-xs font-bold text-brand-blue uppercase mb-1">Profesión <span
                                 class="text-brand-red">*</span></label>
-                        <input type="text" id="reg-profesion" required placeholder="Estudiante, Ingeniero..."
+                        <input type="text" id="reg-profesion" required placeholder="Estudiante de.., Ingeniero de..., Desempleado...,"
                             class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-brand-blue outline-none">
                     </div>
                 </div>
@@ -180,65 +181,170 @@
                 <div class="space-y-4 pt-4">
                     <h3 class="text-sm font-bold text-brand-red border-b border-gray-200 pb-1"><i
                             class="fa-solid fa-flag mr-2"></i>Perfil de Voluntario</h3>
-
                     <div>
-                        <label class="block text-xs font-bold text-brand-blue uppercase mb-2">Bandera que más te motiva
-                            <span class="text-brand-red">*</span></label>
-                        <select id="reg-bandera" required
-                            class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-brand-blue outline-none text-gray-700">
-                            <option value="" disabled selected>Selecciona una opción...</option>
-                            <option value="educacion">Educación y Ciencia</option>
-                            <option value="corrupcion">Lucha contra la corrupción y Transparencia</option>
-                            <option value="medioambiente">Medio Ambiente y Sostenibilidad</option>
-                            <option value="seguridad">Seguridad Ciudadana</option>
-                            <option value="cultura">Cultura y Deporte</option>
-                        </select>
+                        <label class="block text-xs font-bold text-brand-blue uppercase mb-2">
+                            Banderas que más te motivan (puedes elegir varias) <span class="text-brand-red">*</span>
+                        </label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="educacion">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg group-[.active]:bg-brand-blue/10 transition-colors">
+                                        <i class="fa-solid fa-book-open text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Educación, Ciencia y Tecnología</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="corrupcion">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-ban text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Lucha contra la Corrupción y Transparencia</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="medioambiente">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-leaf text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Medio Ambiente y Crisis Climática</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="seguridad">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-shield-halved text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Seguridad y Convivencia Ciudadana</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="cultura">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-palette text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Cultura, Deporte y Creatividad</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="derechos">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-venus text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Equidad de Género y Derechos de las Mujeres</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="economia">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-rocket text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Empleo, Innovación y Oportunidades</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox bandera-checkbox" value="rural">
+                                <div class="w-full border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 transition-all hover:bg-gray-50 flex items-center gap-3">
+                                    <div class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <i class="fa-solid fa-dove text-brand-blue text-sm"></i>
+                                    </div>
+                                    <span>Paz, Territorio y Desarrollo Rural</span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
+                    <style>
+                        .bandera-checkbox:checked + div {
+                            border-color: #0A3572; /* brand-blue */
+                            background-color: #0A3572; /* azul muy claro */
+                            box-shadow: 0 0 0 1px #0A3572;
+                        }
+                    </style>
 
                     <div>
                         <label class="block text-xs font-bold text-brand-blue mb-2">Áreas donde te gustaría aportar
                             (varias puede elegir) <span class="text-brand-red">*</span></label>
                         <div class="space-y-2">
                             <label class="flex items-center cursor-pointer group">
-                                <input type="checkbox" class="hidden custom-checkbox" value="redes">
-                                <div
-                                    class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
-                                    <i class="fa-solid fa-mobile-screen mt-0.5"></i>
-                                    <span><strong>Redes Sociales:</strong> Crear contenido, comentar, compartir.</span>
+                                <input type="checkbox" class="hidden custom-checkbox" value="territorio">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-people-roof mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Territorio y Comunidad:</strong> Puerta a puerta, diálogo con vecinos, reuniones barriales.</span>
                                 </div>
                             </label>
                             <label class="flex items-center cursor-pointer group">
-                                <input type="checkbox" class="hidden custom-checkbox" value="logistica">
-                                <div
-                                    class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
-                                    <i class="fa-solid fa-truck-fast mt-0.5"></i>
-                                    <span><strong>Logística:</strong> Organizar eventos, transporte,
-                                        distribución.</span>
+                                <input type="checkbox" class="hidden custom-checkbox" value="redes">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-share-nodes mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Redes Sociales:</strong> Crear contenido, comentar, compartir, moderar grupos.</span>
+                                </div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox" value="arte">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-palette mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Arte y Creatividad:</strong> Fotografía, video, ilustración, muralismo, música.</span>
                                 </div>
                             </label>
                             <label class="flex items-center cursor-pointer group">
                                 <input type="checkbox" class="hidden custom-checkbox" value="comunicacion">
-                                <div
-                                    class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
-                                    <i class="fa-solid fa-bullhorn mt-0.5"></i>
-                                    <span><strong>Comunicación:</strong> Escribir textos, hablar en público,
-                                        diseño.</span>
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-bullhorn mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Comunicación:</strong> Escribir textos, hablar en público, diseño, RR.PP.</span>
                                 </div>
                             </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox" value="logistica">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-box-archive mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Logística y Operaciones:</strong> Eventos, transporte, distribución de publicidad.</span>
+                                </div>
+                            </label>
+
                             <label class="flex items-center cursor-pointer group">
                                 <input type="checkbox" class="hidden custom-checkbox" value="datos">
-                                <div
-                                    class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
-                                    <i class="fa-solid fa-chart-pie mt-0.5"></i>
-                                    <span><strong>Datos/Sistemas:</strong> Excel, bases de datos, automatización.</span>
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-laptop-code mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Análisis de Datos y Sistemas:</strong> Excel, bases de datos, automatización.</span>
                                 </div>
                             </label>
+
                             <label class="flex items-center cursor-pointer group">
-                                <input type="checkbox" class="hidden custom-checkbox" value="territorio">
-                                <div
-                                    class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
-                                    <i class="fa-solid fa-shoe-prints mt-0.5"></i>
-                                    <span><strong>Territorio:</strong> Puerta a puerta, diálogo con vecinos.</span>
+                                <input type="checkbox" class="hidden custom-checkbox" value="educacion">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-graduation-cap mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Educación y Bienestar:</strong> Pedagogía de propuestas, capacitación, apoyo en salud.</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox" value="legal">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-scale-balanced mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Apoyo Legal y Estratégico:</strong> Asesoría jurídica, vigilancia electoral.</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="checkbox" class="hidden custom-checkbox" value="recaudacion">
+                                <div class="w-full border border-gray-200 rounded-lg p-3 text-xs text-gray-600 transition-colors group-hover:bg-gray-50 flex items-start gap-2">
+                                    <i class="fa-solid fa-hand-holding-dollar mt-0.5 text-brand-blue"></i>
+                                    <span><strong>Recaudación y Alianzas:</strong> Gestión de fondos, contacto con gremios.</span>
                                 </div>
                             </label>
                         </div>
@@ -256,9 +362,75 @@
                             <option value="15+">Más de 15 horas</option>
                         </select>
                     </div>
+                    <style>
+                        .animate-fade-in {
+                            animation: fadeIn 0.3s ease-out;
+                        }
+
+                        @keyframes fadeIn {
+                            from { opacity: 0; transform: translateY(-10px); }
+                            to { opacity: 1; transform: translateY(0); }
+                        }
+                    </style>
 
                     <div>
-                        <label class="block text-xs font-bold text-brand-blue uppercase mb-2">Firmeza de apoyo (1 al 5)
+                        <label class="block text-xs font-bold text-brand-blue mb-2">
+                            ¿Haces parte de algún colectivo, grupo o comunidad? (Ej: Junta de acción comunal, grupo deportivo, colectivo ambiental, sindicato, etc.) <span class="text-brand-red">*</span>
+                        </label>
+                        <div class="flex gap-2 mb-3">
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="colectivo" value="si" required class="hidden custom-radio" onchange="toggleColectivoInput(true)">
+                                <div class="w-full text-center py-2 border border-gray-200 rounded-lg font-bold text-gray-500 transition-colors hover:bg-gray-50">Sí</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="colectivo" value="no" class="hidden custom-radio" onchange="toggleColectivoInput(false)">
+                                <div class="w-full text-center py-2 border border-gray-200 rounded-lg font-bold text-gray-500 transition-colors hover:bg-gray-50">No</div>
+                            </label>
+                        </div>
+
+                        <div id="wrapper-nombre-colectivo" class="hidden animate-fade-in">
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1">¿Cuál colectivo o comunidad?</label>
+                            <input type="text" id="reg-nombre-colectivo" placeholder="Nombre del grupo o tipo de colectivo..." 
+                                class="w-full bg-white border border-gray-200 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-brand-blue outline-none">
+                        </div>
+                    </div>
+                    <script>
+                        function toggleColectivoInput(show) {
+                            const wrapper = document.getElementById('wrapper-nombre-colectivo');
+                            const input = document.getElementById('reg-nombre-colectivo');
+                            
+                            if (show) {
+                                wrapper.classList.remove('hidden');
+                                input.setAttribute('required', 'true');
+                                input.focus();
+                            } else {
+                                wrapper.classList.add('hidden');
+                                input.removeAttribute('required');
+                                input.value = ''; // Limpia el texto si cambian a "No"
+                            }
+                        }
+                    </script>
+
+                    <div>
+                        <label class="block text-xs font-bold text-brand-blue mb-2">¿Estarías dispuesto a liderar un pequeño grupo de voluntarios en tu zona o área de conocimiento? <span class="text-brand-red">*</span></label>
+                        <div class="flex justify-between gap-2">
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="liderazgo" value="si" required class="hidden custom-radio">
+                                <div class="w-full text-center py-2 border border-gray-200 rounded-lg font-bold text-gray-500 transition-colors hover:bg-gray-50">Sí</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="liderazgo" value="no" class="hidden custom-radio">
+                                <div class="w-full text-center py-2 border border-gray-200 rounded-lg font-bold text-gray-500 transition-colors hover:bg-gray-50">No</div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" name="liderazgo" value="tal_vez" class="hidden custom-radio">
+                                <div class="w-full text-center py-2 border border-gray-200 rounded-lg font-bold text-gray-500 transition-colors hover:bg-gray-50">Tal vez</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-brand-blue uppercase mb-2">Firmeza de apoyo a Fajardo (1 al 5)
                             <span class="text-brand-red">*</span></label>
                         <div class="flex justify-between gap-2">
                             <label class="flex-1 cursor-pointer"><input type="radio" name="apoyo" value="1" required=""
@@ -313,15 +485,19 @@
                     </div>
                 </div>
 
+                <div class="space-y-3 pt-2">
+                    <label class="flex items-start gap-2 cursor-pointer group">
+                        <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-gray-300 text-brand-blue focus:ring-brand-blue">
+                        <span class="text-[10px] text-gray-500 leading-tight">
+                            Autorizo el tratamiento de mis datos personales para fines de coordinación de voluntariado y comunicación política para la campaña presidencial de Sergio Fajardo, conforme a la Ley 1581 de 2012 y la política de privacidad. <span class="text-brand-red">*</span>
+                        </span>
+                    </label>
+                </div>
 
                 <button type="submit" id="btn-register"
                     class="w-full bg-brand-red text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-red-800 transition-colors mt-6">
                     Crear mi cuenta de Voluntario<i class="fa-solid fa-check ml-1"></i>
                 </button>
-
-                <p class="text-center text-[10px] text-gray-400 mt-2 pb-4">
-                    Al registrarte aceptas los términos de tratamiento de datos.
-                </p>
             </form>
         </div>
     </div>
@@ -685,12 +861,26 @@
         async function registrarVoluntario(event) {
             event.preventDefault();
             const btn = document.getElementById('btn-register');
+            
+            // 1. Capturar áreas y banderas
+            const areas = Array.from(document.querySelectorAll('.custom-checkbox[value]:not(.bandera-checkbox):checked')).map(cb => cb.value);
+            const banderas = Array.from(document.querySelectorAll('.bandera-checkbox:checked')).map(cb => cb.value);
+
+            // 2. Validación de checkboxes
+            if (banderas.length === 0) {
+                alert("Por favor selecciona al menos una bandera que te motive.");
+                return;
+            }
+            if (areas.length === 0) {
+                alert("Por favor selecciona al menos un área donde te gustaría aportar.");
+                return;
+            }
+
             btn.disabled = true;
             btn.innerText = "Registrando...";
 
             const wapp = document.getElementById('reg-whatsapp').value;
             const pass = document.getElementById('reg-password').value;
-            const areas = Array.from(document.querySelectorAll('.custom-checkbox:checked')).map(cb => cb.value);
 
             // A. Crear Usuario en Auth
             const { data: authData, error: authError } = await supabaseApp.auth.signUp({
@@ -698,15 +888,14 @@
                 password: pass
             });
 
-            // B. Verificar si hubo error al crear cuenta (Ej: Usuario ya existe)
             if (authError) {
                 alert("Error de registro: " + authError.message);
                 btn.disabled = false;
-                btn.innerText = "Crear mi cuenta";
+                btn.innerText = "Crear mi cuenta de Voluntario";
                 return;
             }
 
-            // C. Si Auth funcionó, guardamos el perfil en la tabla voluntarios
+            // C. Guardar en tabla voluntarios
             if (authData.user) {
                 const { error: dbError } = await supabaseApp.from('voluntarios').insert([{
                     id: authData.user.id,
@@ -717,15 +906,21 @@
                     ciudad: document.getElementById('input-ciudad').value,
                     sector: document.getElementById('reg-sector').value,
                     profesion: document.getElementById('reg-profesion').value,
-                    bandera_motivacion: document.getElementById('reg-bandera').value,
+                    bandera_motivacion: banderas, // Ahora enviamos el arreglo
                     areas_aporte: areas,
                     tiempo_disponible: document.getElementById('reg-tiempo').value,
-                    firmeza_apoyo: parseInt(document.querySelector('input[name="apoyo"]:checked')?.value || 1)
+                    firmeza_apoyo: parseInt(document.querySelector('input[name="apoyo"]:checked')?.value || 1),
+                    pertenece_colectivo: document.querySelector('input[name="colectivo"]:checked')?.value,
+                    nombre_colectivo: document.getElementById('reg-nombre-colectivo').value || null,
+                    dispuesto_liderar: document.querySelector('input[name="liderazgo"]:checked')?.value,
+                    acepto_terminos: document.querySelector('input[type="checkbox"][required]').checked,
+                    fecha_aceptacion: new Date().toISOString()
+                    // IP eliminada del payload
                 }]);
 
                 if (dbError) {
                     console.error("Error BD:", dbError);
-                    alert("Cuenta creada pero hubo un problema guardando tus datos: " + dbError.message);
+                    alert("Cuenta creada pero hubo un problema guardando tus datos. Revisa la consola.");
                 } else {
                     alert("¡Registro exitoso!");
                     window.location.replace("inicio.html");
@@ -733,7 +928,7 @@
             }
 
             btn.disabled = false;
-            btn.innerText = "Crear mi cuenta";
+            btn.innerText = "Crear mi cuenta de Voluntario";
         }
     </script>
 
