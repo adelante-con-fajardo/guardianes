@@ -258,14 +258,33 @@
         <main id="main-content" class="flex-1 overflow-y-auto pb-24 p-4 space-y-6">
 
             <section id="page-inicio" class="page-content space-y-6">
+<div class="bg-white p-2 rounded-xl border border-brand-yellow/30 !mt-0">
+<h2 class="font-bold text-sm text-brand-blue mb-1">HERRAMIENTAS GUARDIAN (Click encima para usarla)</h2>
+<div class="!mt-1 flex flex-wrap gap-2 mb-2">
+    <a href="https://adelante-con-fajardo.github.io/vota_por_fajardo/" target="_blank"
+        rel="noopener noreferrer"
+        class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+        <i class="fa-solid fa-check-to-slot mr-1"></i>Pedagogía del Voto
+    </a>
+    <a href="https://adelante-con-fajardo.github.io/propuestas" target="_blank"
+        rel="noopener noreferrer"
+        class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+        <i class="fa-solid fa-comments mr-1"></i>Chatea con las propuestas
+    </a>
+    <a href="https://adelante-con-fajardo.github.io/marco" target="_blank"
+        rel="noopener noreferrer"
+        class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+        <i class="fa-solid fa-image mr-1"></i>Marco perfil
+    </a>
+</div>                
+</div>
 <!-- KIT DIGITAL SEMANAL #6 -->
 <div class="!mt-1 rounded-2xl overflow-hidden shadow-md border border-brand-yellow/40" style="background: linear-gradient(135deg, #0A3572 0%, #0d4a9e 100%);">
-
     <!-- Header del Kit -->
     <div class="px-4 pt-4 pb-3 flex items-center justify-between">
         <div>
             <div class="flex items-center gap-2 mb-0.5">
-                <span class="bg-brand-yellow text-brand-blue text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Kit #6</span>
+                <span class="bg-brand-yellow text-brand-blue text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Kit Digital #6</span>
                 <span class="text-white/60 text-[9px] font-medium">11 – 17 de mayo</span>
             </div>
             <h2 class="font-black text-white text-base leading-tight uppercase tracking-tight">
@@ -364,339 +383,228 @@
     </div>
 </div>
 
-
-
-
-<div class="bg-brand-light p-3 rounded-xl border border-brand-yellow/30 !mt-1">
-    <h2 class="font-bold text-xs text-brand-blue mb-2 text-center">
-        Contenido a Compartir
+<div class="bg-brand-light p-4 rounded-xl border border-brand-yellow/30 !mt-1">
+    <h2 class="font-bold text-xs text-brand-blue mb-4 text-center uppercase tracking-wider flex items-center justify-center gap-1.5">
+        <i class="fa-solid fa-photo-film text-xs"></i> Contenido a Compartir
     </h2>
 
-    <div class="grid grid-cols-4 gap-2 w-full">
-        <button onclick="abrirModal('imagenes')" class="bg-white py-2.5 px-1 rounded-lg shadow-sm flex flex-col items-center gap-1.5 active:bg-gray-50 transition border border-gray-100 hover:border-brand-blue">
-            <i class="fa-solid fa-images text-brand-red text-xl"></i>
-            <span class="text-[10px] font-semibold text-gray-700 leading-tight">Imágenes</span>
-        </button>
-
-        <button onclick="abrirModal('videos')" class="bg-white py-2.5 px-1 rounded-lg shadow-sm flex flex-col items-center gap-1.5 active:bg-gray-50 transition border border-gray-100 hover:border-brand-blue">
-            <i class="fa-solid fa-circle-play text-brand-blue text-xl"></i>
-            <span class="text-[10px] font-semibold text-gray-700 leading-tight">Videos</span>
-        </button>
-
-        <button onclick="abrirModal('pdf')" class="bg-white py-2.5 px-1 rounded-lg shadow-sm flex flex-col items-center gap-1.5 active:bg-gray-50 transition border border-gray-100 hover:border-brand-blue">
-            <i class="fa-regular fa-file-pdf text-brand-red text-xl"></i>
-            <span class="text-[10px] font-semibold text-gray-700 leading-tight">Folletos</span>
-        </button>
-
-        <button onclick="abrirModal('youtube')" class="bg-white py-2.5 px-1 rounded-lg shadow-sm flex flex-col items-center gap-1.5 active:bg-gray-50 transition border border-gray-100 hover:border-brand-blue">
-            <i class="fa-brands fa-youtube text-red-600 text-xl"></i>
-            <span class="text-[10px] font-semibold text-gray-700 leading-tight">YouTube</span>
-        </button>
-    </div>
-
-    <div id="kitResultados" class="mt-4 hidden">
-        <div class="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
-            <h3 id="kitTitulo" class="font-bold text-xs text-brand-blue"></h3>
-            <button onclick="cerrarKit()" class="text-gray-400 hover:text-brand-red transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-        </div>
-        <div id="kitContenido" class="space-y-3 max-h-72 overflow-y-auto pr-1"></div>
-    </div>
-
-    <div id="modalDescargas" class="hidden fixed inset-0 z-[200] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-fade-in">
-            <div class="p-3 border-b flex justify-between items-center bg-gray-50">
-                <h3 id="modalTitulo" class="font-bold text-brand-blue uppercase text-xs tracking-widest"></h3>
-                <button onclick="cerrarModal()" class="text-gray-400 hover:text-brand-red transition-colors">
-                    <i class="fa-solid fa-circle-xmark text-xl"></i>
-                </button>
-            </div>
-            <div id="modalContenido" class="p-3 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto bg-gray-50/50">
-            </div>
-            <div class="p-3 bg-white text-center text-[10px] text-gray-400 font-medium">
-                Pulsa el icono para descargar el archivo
-            </div>
-        </div>
-    </div>
-
-    <div id="modalPreview" class="hidden fixed inset-0 z-[250] bg-black/90 flex flex-col items-center justify-center p-4 backdrop-blur-md">
-        <button onclick="cerrarPreview()" class="absolute top-6 right-6 text-white hover:text-brand-yellow transition-transform hover:scale-125">
-            <i class="fa-solid fa-circle-xmark text-3xl"></i>
-        </button>
-
-        <div id="contenedorPreview" class="w-full max-w-lg flex items-center justify-center rounded-xl overflow-hidden shadow-2xl">
-        </div>
-
-        <div class="mt-6 flex gap-4">
-            <a id="btnDescargaDirecta" href="#" download="" class="bg-brand-yellow text-brand-blue px-6 py-2.5 rounded-full font-black uppercase text-xs flex items-center gap-2 shadow-lg">
-                <i class="fa-solid fa-download"></i> Descargar
-            </a>
+    <div id="kitGaleriaVisual" class="space-y-5 max-h-[550px] overflow-y-auto pr-1">
+        <div id="kitLoading" class="text-center p-6 text-gray-400">
+            <i class="fa-solid fa-circle-notch fa-spin text-lg text-brand-blue"></i>
+            <p class="mt-1 text-[10px]">Cargando materiales...</p>
         </div>
     </div>
 </div>
-                <script>
-                    // 1. Abrir lista de archivos (AHORA DINÁMICO)
-                    // Abrir el kit en línea (debajo de los botones)
-                    async function abrirModal(tipo) {
-                        const contenedor = document.getElementById('kitContenido');
-                        const tituloElemento = document.getElementById('kitTitulo');
-                        const kitResultados = document.getElementById('kitResultados');
 
-                        const titulos = {
-                            'imagenes': 'Imágenes',
-                            'videos': 'Videos Internos',
-                            'pdf': 'Folletos y Guías',
-                            'youtube': 'Videos de YouTube'
-                        };
-                        tituloElemento.innerText = titulos[tipo] || tipo;
-                        contenedor.innerHTML = '<div class="text-center p-4 text-gray-400"><i class="fa-solid fa-circle-notch fa-spin text-xl"></i> Cargando...</div>';
-                        kitResultados.classList.remove('hidden');
-                        // Desplazar suavemente hasta el área del kit
-                        kitResultados.scrollIntoView({ behavior: 'smooth', block: 'start' });
+<div id="modalPreview" class="hidden fixed inset-0 z-[250] bg-black/90 flex flex-col items-center justify-center p-4 backdrop-blur-md">
+    <button onclick="cerrarPreview()" class="absolute top-6 right-6 text-white hover:text-brand-yellow transition-transform hover:scale-125 cursor-pointer">
+        <i class="fa-solid fa-circle-xmark text-3xl"></i>
+    </button>
 
-                        let data = [];
-                        if (navigator.onLine) {
-                            const { data: fetched, error } = await supabaseApp.from(tipo).select('*').order('created_at', { ascending: false });
-                            if (!error && fetched) {
-                                data = fetched;
-                                localStorage.setItem(`kit_${tipo}`, JSON.stringify(data));
-                            } else {
-                                const cached = localStorage.getItem(`kit_${tipo}`);
-                                if (cached) data = JSON.parse(cached);
-                            }
-                        } else {
-                            const cached = localStorage.getItem(`kit_${tipo}`);
-                            if (cached) data = JSON.parse(cached);
-                        }
+    <div id="contenedorPreview" class="w-full max-w-2xl flex items-center justify-center rounded-xl overflow-hidden shadow-2xl bg-white/5 p-1">
+        </div>
 
-                        contenedor.innerHTML = '';
-                        if (data.length === 0) {
-                            contenedor.innerHTML = '<div class="text-center p-4 text-gray-400">No hay contenido disponible offline.</div>';
-                            return;
-                        }
-
-                        data.forEach(item => {
-                            let icono = 'fa-image';
-                            if (tipo === 'videos' || tipo === 'youtube') icono = 'fa-play-circle';
-                            if (tipo === 'pdf') icono = 'fa-file-pdf';
-
-                            const source = tipo === 'youtube' ? item.video_id : item.preview;
-                            const downloadUrl = item.link || source; // Suponiendo que `link` es la URL de descarga directa
-
-                            const card = document.createElement('div');
-                            card.className = 'bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition';
-                            card.innerHTML = `
-            <div class="flex items-center justify-between p-3 border-b bg-gray-50">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid ${icono} ${tipo === 'youtube' ? 'text-red-600' : 'text-gray-500'}"></i>
-                    <span class="font-semibold text-gray-700 text-sm">${item.nombre}</span>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="lanzarPreview('${tipo}', '${source}', '${downloadUrl}')" 
-                            class="text-brand-blue hover:text-brand-red transition p-1" title="Ver">
-                        <i class="fa-solid fa-eye"></i>
-                    </button>
-                    <a href="${downloadUrl}" download 
-                       class="text-brand-blue hover:text-brand-red transition p-1" title="Descargar">
-                        <i class="fa-solid fa-download"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="aspect-video bg-gray-100 flex items-center justify-center p-2">
-                ${tipo === 'imagenes' ? `<img src="${source}" class="max-h-32 object-contain" alt="${item.nombre}">` :
-                                    tipo === 'videos' ? `<video controls class="max-h-32 w-full"><source src="${source}"></video>` :
-                                        tipo === 'pdf' ? `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(source)}&embedded=true" class="w-full h-32"></iframe>` :
-                                            `<iframe class="w-full h-32" src="https://www.youtube.com/embed/${source}" frameborder="0" allowfullscreen></iframe>`}
-            </div>
-        `;
-                            contenedor.appendChild(card);
-                        });
-                    }
-
-                    // Cerrar el área del kit
-                    function cerrarKit() {
-                        document.getElementById('kitResultados').classList.add('hidden');
-                    }
-
-                    // 3. Lanzar Previsualización
-                    function lanzarPreview(tipo, source, downloadLink) {
-                        const previewModal = document.getElementById('modalPreview');
-                        const contenedor = document.getElementById('contenedorPreview');
-                        const btnDescarga = document.getElementById('btnDescargaDirecta');
-
-                        btnDescarga.href = downloadLink;
-                        contenedor.innerHTML = '';
-
-                        if (tipo === 'imagenes') {
-                            contenedor.innerHTML = `<img src="${source}" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl">`;
-                        }
-                        else if (tipo === 'videos') {
-                            // Video de Storage (MP4)
-                            contenedor.innerHTML = `
-            <div class="w-full bg-black rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-800">
-                <video controls autoplay class="w-full max-h-[70vh] outline-none">
-                    <source src="${source}" type="video/mp4">
-                </video>
-            </div>`;
-                        }
-                        else if (tipo === 'youtube') {
-                            // Video de YouTube (Iframe)
-                            contenedor.innerHTML = `
-            <div class="aspect-video w-full bg-black rounded-xl overflow-hidden shadow-2xl">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${source}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>`;
-                        }
-                        else if (tipo === 'pdf') {
-                            contenedor.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(source)}&embedded=true" class="w-full h-[60vh] rounded-xl shadow-2xl bg-white"></iframe>`;
-                        }
-
-                        previewModal.classList.remove('hidden');
-                    }
-                    // 4. Cerrar Previsualización
-                    function cerrarPreview() {
-                        const previewModal = document.getElementById('modalPreview');
-                        const contenedor = document.getElementById('contenedorPreview');
-
-                        previewModal.classList.add('hidden');
-                        // Vaciamos el contenedor para detener la reproducción de videos si estaban activos
-                        setTimeout(() => { contenedor.innerHTML = ''; }, 300);
-                    }
-
-                    // Listener para cerrar al tocar el fondo (modal descargas)
-                    document.getElementById('modalDescargas').addEventListener('click', function (e) {
-                        if (e.target === this) cerrarModal();
-                    });
-
-                    // Listener para cerrar al tocar el fondo (modal preview)
-                    document.getElementById('modalPreview').addEventListener('click', function (e) {
-                        if (e.target === this) cerrarPreview();
-                    });
-                </script>
-                
-                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-inner !mt-1">
-                    <h2 class="font-bold text-sm text-brand-blue mb-3">HERRAMIENTAS GUARDIAN (Click encima para usarla)
-                    </h2>
-                    <div class="flex flex-wrap gap-2 mb-2">
-                        <a href="https://adelante-con-fajardo.github.io/vota_por_fajardo/" target="_blank"
-                            rel="noopener noreferrer"
-                            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                            <i class="fa-solid fa-check-to-slot mr-1"></i>Pedagogía del Voto
-                        </a>
-                        <a href="https://adelante-con-fajardo.github.io/propuestas" target="_blank"
-                            rel="noopener noreferrer"
-                            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                            <i class="fa-solid fa-comments mr-1"></i>Chatea con las propuestas
-                        </a>
-                        <a href="https://adelante-con-fajardo.github.io/marco" target="_blank"
-                            rel="noopener noreferrer"
-                            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-                            <i class="fa-solid fa-image mr-1"></i>Marco perfil
-                        </a>
-                    </div>
-
-                    <!-- Contenedor Principal de Redes -->
-<div class="relative">
-    <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-        <h2 class="font-bold text-sm text-brand-blue">
-            SIGUE AL CANDIDATO (Click encima para seguir)
-        </h2>
-        
-        <!-- ¡NUEVO BOTÓN! -> Botón Copiar Redes -->
-        <button id="btn-copiar-redes" class="bg-brand-blue text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-opacity-90 transition flex items-center gap-1.5 shadow-sm cursor-pointer">
-            <i class="fa-regular fa-copy"></i> Copiar redes para WhatsApp
-        </button>
-    </div>
-
-    <div class="flex flex-wrap gap-2 mb-4">
-        <!-- Botón Facebook -->
-        <a href="https://www.facebook.com/SergioFajardoV" target="_blank" rel="noopener noreferrer"
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-facebook mr-1"></i>Sergio Fajardo
-        </a>
-        <!-- Botón Twitter/X -->
-        <a href="https://x.com/sergio_fajardo" target="_blank" rel="noopener noreferrer"
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-twitter mr-1"></i>@sergio_fajardo
-        </a>
-        <!-- Botón Instagram -->
-        <a href="https://www.instagram.com/sergiofajardovalderrama/" target="_blank"
-            rel="noopener noreferrer"
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-instagram mr-1"></i>@sergiofajardovalderrama
-        </a>
-        <!-- Botón YouTube -->
-        <a href="https://www.youtube.com/@SergioFajardoValderrama" target="_blank"
-            rel="noopener noreferrer"
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-youtube mr-1"></i>Canal YouTube
-        </a>
-        <!-- Botón TikTok -->
-        <a href="https://www.tiktok.com/@sergiofajardov" target="_blank" rel="noopener noreferrer"
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-tiktok mr-1"></i>TikTok
-        </a>
-        <!-- Botón WhatsApp -->
-        <a href="https://whatsapp.com/channel/0029Vb6aMx4JZg3z958VWB17" target="_blank" rel="noopener noreferrer" 
-            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
-            <i class="fa-brands fa-whatsapp mr-1"></i>Canal de WhatsApp
+    <div class="mt-6 flex gap-4">
+        <a id="btnDescargaDirecta" href="#" download="" class="bg-brand-yellow text-brand-blue px-6 py-2.5 rounded-full font-black uppercase text-xs flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
+            <i class="fa-solid fa-download"></i> Descargar Archivo
         </a>
     </div>
 </div>
 
-<!-- ¡NUEVO MODAL! -> Modal "Copiado" (Oculto por defecto con la clase 'hidden') -->
-<div id="modal-copiado" class="fixed inset-0 flex items-center justify-center z-50 hidden px-4">
-    <!-- Fondo oscuro semitransparente -->
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
-    
-    <!-- Contenido del Modal -->
-    <div class="bg-white rounded-xl p-6 shadow-2xl relative z-10 max-w-xs w-full text-center border border-gray-100 transform transition-all animate-fade-in">
-        <div class="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
-            <i class="fa-solid fa-check text-xl"></i>
-        </div>
-        <h3 class="text-gray-800 font-bold text-lg">¡Copiado!</h3>
-        <p class="text-gray-500 text-xs mt-1">Las redes sociales se han copiado al portapapeles en un solo mensaje para compartir.</p>
-    </div>
-</div>
-
-<!-- Lógica en JavaScript -->
 <script>
-    document.getElementById('btn-copiar-redes').addEventListener('click', function() {
-        // Formateamos el mensaje tal como se verá en WhatsApp con saltos de línea y negritas (*)
-        const textoWhatsApp = `*¡SIGUE AL CANDIDATO SERGIO FAJARDO!* 🇨🇴
+    // Ejecutar automáticamente al cargar el componente
+    document.addEventListener('DOMContentLoaded', cargarGaleriaVisual);
 
-*Facebook:* https://www.facebook.com/SergioFajardoV
-*Twitter/X:* https://x.com/sergio_fajardo
-*Instagram:* https://www.instagram.com/sergiofajardovalderrama/
-*YouTube:* https://www.youtube.com/@SergioFajardoValderrama
-*TikTok:* https://www.tiktok.com/@sergiofajardov
-*Canal de WhatsApp:* https://whatsapp.com/channel/0029Vb6aMx4JZg3z958VWB17`;
+    async function cargarGaleriaVisual() {
+        const contenedorPrincipal = document.getElementById('kitGaleriaVisual');
+        
+        const tipos = ['imagenes', 'videos', 'youtube', 'pdf'];
+        const titulos = {
+            'imagenes': 'Imágenes',
+            'videos': 'Videos',
+            'youtube': 'YouTube',
+            'pdf': 'Documentos PDF'
+        };
 
-        // Intentar usar la API moderna del portapapeles
-        navigator.clipboard.writeText(textoWhatsApp).then(() => {
-            const modal = document.getElementById('modal-copiado');
+        let htmlFinal = '';
+
+        for (const tipo of tipos) {
+            let data = [];
             
-            // Mostrar modal
-            modal.classList.remove('hidden');
-            
-            // Ocultar automáticamente después de 2.5 segundos
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 2500);
-        }).catch(err => {
-            console.error('Error al copiar el texto: ', err);
-            // Alternativa rápida por si el navegador bloquea la API clipboard (casos raros)
-            const el = document.createElement('textarea');
-            el.value = textoWhatsApp;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-        });
+            // Lógica de conexión a base de datos Supabase / Caché Offline
+            if (navigator.onLine) {
+                try {
+                    const { data: fetched, error } = await supabaseApp.from(tipo).select('*').order('created_at', { ascending: false });
+                    if (!error && fetched) {
+                        data = fetched;
+                        localStorage.setItem(`kit_${tipo}`, JSON.stringify(data));
+                    } else {
+                        const cached = localStorage.getItem(`kit_${tipo}`);
+                        if (cached) data = JSON.parse(cached);
+                    }
+                } catch (e) {
+                    const cached = localStorage.getItem(`kit_${tipo}`);
+                    if (cached) data = JSON.parse(cached);
+                }
+            } else {
+                const cached = localStorage.getItem(`kit_${tipo}`);
+                if (cached) data = JSON.parse(cached);
+            }
+
+            // Renderizar el bloque de la categoría
+            htmlFinal += `
+                <div>
+                    <h3 class="font-bold text-xs text-brand-blue mb-2 pb-1 border-b border-gray-200/60 uppercase tracking-wide">
+                        ${titulos[tipo]}
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2">
+            `;
+
+            if (data.length === 0) {
+                htmlFinal += `
+                    <div class="col-span-2 text-center py-3 text-[10px] text-gray-400 italic bg-white/50 rounded-lg border border-dashed border-gray-200">
+                        No hay contenido disponible
+                    </div>
+                `;
+            } else {
+                data.forEach(item => {
+                    const source = tipo === 'youtube' ? item.video_id : item.preview;
+                    const downloadUrl = item.link || source;
+
+                    // Tarjeta contenedora básica
+                    htmlFinal += `
+                        <div class="bg-white p-1.5 rounded-xl border border-gray-100 shadow-2xs flex flex-col justify-between group bg-linear-to-b from-white to-gray-50/30">
+                            
+                            <div class="aspect-video w-full bg-gray-100 rounded-lg overflow-hidden relative flex items-center justify-center mb-1.5 border border-gray-100 shadow-inner">
+                    `;
+
+                    // Miniaturas según el formato
+                    if (tipo === 'imagenes') {
+                        htmlFinal += `<img src="${source}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`;
+                    } 
+                    else if (tipo === 'videos') {
+                        htmlFinal += `
+                            <video controls class="w-full h-full object-cover bg-black" preload="metadata">
+                                <source src="${source}" type="video/mp4">
+                            </video>
+                        `;
+                    } 
+                    else if (tipo === 'youtube') {
+                        htmlFinal += `
+                            <div class="relative w-full h-full flex items-center justify-center">
+                                <img src="https://img.youtube.com/vi/${source}/mqdefault.jpg" class="w-full h-full object-cover">
+                                <i class="fa-brands fa-youtube text-red-600 text-2xl absolute drop-shadow-md"></i>
+                            </div>
+                        `;
+                    } 
+                    else if (tipo === 'pdf') {
+                        // NUEVO: La miniatura del PDF ahora es un botón gigante para abrir el modal directamente
+                        htmlFinal += `
+                            <div onclick="lanzarPreview('${tipo}', '${source}', '${downloadUrl}')" 
+                                 class="flex flex-col items-center justify-center p-2 text-center w-full h-full bg-red-50/40 cursor-pointer hover:bg-red-100/60 transition-colors group/pdf">
+                                <i class="fa-regular fa-file-pdf text-brand-red text-2xl mb-1 group-hover/pdf:scale-110 transition-transform"></i>
+                                <span class="text-[9px] text-brand-red font-bold uppercase tracking-wider">Tocar para leer</span>
+                            </div>
+                        `;
+                    }
+
+                    htmlFinal += `
+                            </div>
+                            
+                            <div class="px-0.5">
+                                <p class="text-[10px] font-bold text-gray-700 truncate mb-1.5" title="${item.nombre}">
+                                    ${item.nombre}
+                                </p>
+                    `;
+
+                    // Asignación de botones de acción inferiores
+                    if (tipo === 'pdf') {
+                        // NUEVO: Botón principal de "Visualizar" para el PDF que lanza el modal
+                        htmlFinal += `
+                            <button onclick="lanzarPreview('${tipo}', '${source}', '${downloadUrl}')"
+                               class="w-full bg-brand-blue hover:bg-opacity-90 text-white text-[9px] font-black uppercase tracking-wider py-1.5 rounded-lg text-center flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all cursor-pointer">
+                                <i class="fa-solid fa-eye text-[8px]"></i> Visualizar PDF
+                            </button>
+                        `;
+                    } else if (tipo === 'youtube') {
+                        htmlFinal += `
+                            <a href="https://www.youtube.com/watch?v=${source}" target="_blank" rel="noopener noreferrer"
+                               class="w-full bg-red-600 hover:bg-red-700 text-white text-[9px] font-black uppercase tracking-wider py-1.5 rounded-lg text-center flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i> Ver Video
+                            </a>
+                        `;
+                    } else {
+                        htmlFinal += `
+                            <a href="${downloadUrl}" download="${item.nombre}"
+                               class="w-full bg-brand-blue hover:bg-opacity-90 text-white text-[9px] font-black uppercase tracking-wider py-1.5 rounded-lg text-center flex items-center justify-center gap-1 shadow-xs active:scale-95 transition-all">
+                                <i class="fa-solid fa-download text-[8px]"></i> Descargar
+                            </a>
+                        `;
+                    }
+
+                    htmlFinal += `
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            htmlFinal += `
+                    </div>
+                </div>
+            `;
+        }
+
+        contenedorPrincipal.innerHTML = htmlFinal;
+    }
+
+    // ================= LOGICA DEL MODAL DE PREVISUALIZACIÓN INTERACTIVA =================
+    function lanzarPreview(tipo, source, downloadLink) {
+        const previewModal = document.getElementById('modalPreview');
+        const contenedor = document.getElementById('contenedorPreview');
+        const btnDescarga = document.getElementById('btnDescargaDirecta');
+
+        btnDescarga.href = downloadLink;
+        contenedor.innerHTML = '';
+
+        // Renderizado adaptativo según el archivo seleccionado
+        if (tipo === 'pdf') {
+            // NUEVO: Carga el PDF usando el visualizador embebido de Google Docs optimizado para iframe
+            contenedor.innerHTML = `
+                <iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(source)}&embedded=true" 
+                        class="w-full h-[70vh] rounded-xl bg-white border-0 shadow-inner">
+                </iframe>`;
+        }
+        else if (tipo === 'imagenes') {
+            contenedor.innerHTML = `<img src="${source}" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl">`;
+        }
+        else if (tipo === 'videos') {
+            contenedor.innerHTML = `
+                <div class="w-full bg-black rounded-2xl overflow-hidden shadow-2xl">
+                    <video controls autoplay class="w-full max-h-[70vh] outline-none">
+                        <source src="${source}" type="video/mp4">
+                    </video>
+                </div>`;
+        }
+
+        // Quitar la clase hidden para que el modal se dibuje en pantalla
+        previewModal.classList.remove('hidden');
+    }
+
+    function cerrarPreview() {
+        const previewModal = document.getElementById('modalPreview');
+        const contenedor = document.getElementById('contenedorPreview');
+        previewModal.classList.add('hidden');
+        // Vaciamos el contenedor para liberar memoria del teléfono y pausar recursos
+        setTimeout(() => { contenedor.innerHTML = ''; }, 300);
+    }
+
+    // Cerrar también si el usuario hace clic en las zonas oscuras de fuera del modal
+    document.getElementById('modalPreview').addEventListener('click', function (e) {
+        if (e.target === this) cerrarPreview();
     });
 </script>
 
-                </div>
             </section>
 
             <section id="page-calendario" class="page-content hidden-page space-y-4">
@@ -1988,6 +1896,101 @@
 
             <section id="page-digital" class="page-content hidden-page space-y-6">
                 <div class="bg-white p-2 rounded-xl border border-brand-yellow/30 !mt-0">
+<div class="relative">
+    <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <h2 class="font-bold text-sm text-brand-blue">
+            SIGUE AL CANDIDATO (Click encima para seguir)
+        </h2>
+        
+        <!-- ¡NUEVO BOTÓN! -> Botón Copiar Redes -->
+        <button id="btn-copiar-redes" class="bg-brand-blue text-white px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-opacity-90 transition flex items-center gap-1.5 shadow-sm cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copiar redes para WhatsApp
+        </button>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+        <!-- Botón Facebook -->
+        <a href="https://www.facebook.com/SergioFajardoV" target="_blank" rel="noopener noreferrer"
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-facebook mr-1"></i>Sergio Fajardo
+        </a>
+        <!-- Botón Twitter/X -->
+        <a href="https://x.com/sergio_fajardo" target="_blank" rel="noopener noreferrer"
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-twitter mr-1"></i>@sergio_fajardo
+        </a>
+        <!-- Botón Instagram -->
+        <a href="https://www.instagram.com/sergiofajardovalderrama/" target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-instagram mr-1"></i>@sergiofajardovalderrama
+        </a>
+        <!-- Botón YouTube -->
+        <a href="https://www.youtube.com/@SergioFajardoValderrama" target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-youtube mr-1"></i>Canal YouTube
+        </a>
+        <!-- Botón TikTok -->
+        <a href="https://www.tiktok.com/@sergiofajardov" target="_blank" rel="noopener noreferrer"
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-tiktok mr-1"></i>TikTok
+        </a>
+        <!-- Botón WhatsApp -->
+        <a href="https://whatsapp.com/channel/0029Vb6aMx4JZg3z958VWB17" target="_blank" rel="noopener noreferrer" 
+            class="bg-brand-light px-3 py-1.5 rounded-full text-xs font-semibold text-brand-blue border border-brand-yellow/20 hover:bg-brand-yellow/10 transition flex items-center">
+            <i class="fa-brands fa-whatsapp mr-1"></i>Canal de WhatsApp
+        </a>
+    </div>
+</div>
+<div id="modal-copiado" class="fixed inset-0 flex items-center justify-center z-50 hidden px-4">
+    <!-- Fondo oscuro semitransparente -->
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
+    
+    <!-- Contenido del Modal -->
+    <div class="bg-white rounded-xl p-6 shadow-2xl relative z-10 max-w-xs w-full text-center border border-gray-100 transform transition-all animate-fade-in">
+        <div class="bg-green-100 text-green-600 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+            <i class="fa-solid fa-check text-xl"></i>
+        </div>
+        <h3 class="text-gray-800 font-bold text-lg">¡Copiado!</h3>
+        <p class="text-gray-500 text-xs mt-1">Las redes sociales se han copiado al portapapeles en un solo mensaje para compartir.</p>
+    </div>
+</div>
+<script>
+    document.getElementById('btn-copiar-redes').addEventListener('click', function() {
+        // Formateamos el mensaje tal como se verá en WhatsApp con saltos de línea y negritas (*)
+        const textoWhatsApp = `*¡SIGUE AL CANDIDATO SERGIO FAJARDO!* 🇨🇴
+
+*Facebook:* https://www.facebook.com/SergioFajardoV
+*Twitter/X:* https://x.com/sergio_fajardo
+*Instagram:* https://www.instagram.com/sergiofajardovalderrama/
+*YouTube:* https://www.youtube.com/@SergioFajardoValderrama
+*TikTok:* https://www.tiktok.com/@sergiofajardov
+*Canal de WhatsApp:* https://whatsapp.com/channel/0029Vb6aMx4JZg3z958VWB17`;
+
+        // Intentar usar la API moderna del portapapeles
+        navigator.clipboard.writeText(textoWhatsApp).then(() => {
+            const modal = document.getElementById('modal-copiado');
+            
+            // Mostrar modal
+            modal.classList.remove('hidden');
+            
+            // Ocultar automáticamente después de 2.5 segundos
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 2500);
+        }).catch(err => {
+            console.error('Error al copiar el texto: ', err);
+            // Alternativa rápida por si el navegador bloquea la API clipboard (casos raros)
+            const el = document.createElement('textarea');
+            el.value = textoWhatsApp;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        });
+    });
+</script>              
                     <h2 class="font-bold text-sm text-brand-blue mb-3">GUARDIA DIGITAL (Tareas hoy! da click encima)
                     </h2>
                     <div id="tareas-digitales" class="flex flex-wrap gap-2 mb-0">
@@ -1999,7 +2002,7 @@
     <i class="fa-solid fa-copy text-xs"></i>
     NUMERAL A MOVER (Click para copiar)
 </h2>
-<div class="flex flex-wrap gap-2 text-brand-red font-bold text-xs mb-6">
+<div class="flex flex-wrap gap-2 text-brand-red font-bold text-xs mb-1">
     <span onclick="copiarContenido(this, '#FajardoPresidente')"
         class="bg-brand-light/50 px-3 py-1.5 rounded-full border border-brand-red/20 cursor-pointer hover:bg-brand-red hover:text-white transition-all active:scale-95">
         #FajardoPresidente
@@ -2009,7 +2012,7 @@
 <!-- ================= SECCIÓN: MENSAJE CONVERSACIONAL CON SEGURIDAD ================= -->
 <h2 class="font-bold text-sm text-brand-blue mb-3 flex items-center gap-2">
     <i class="fa-brands fa-whatsapp text-base text-slate-500"></i>
-    MENSAJE SUGERIDO PARA WHATSAPP (Click para copiar)
+    MENSAJE SUGERIDO PARA COMPARTIR POR WHATSAPP (Click para copiar)
 </h2>
 
 <!-- Tarjeta de vista previa con diseño calmado y limpio -->
